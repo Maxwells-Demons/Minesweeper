@@ -1,0 +1,36 @@
+{
+    "easy" : {
+        "width"         : 9,
+        "height"        : 9,
+        "mine_number"   : 10
+    },
+    "normal" : {
+        "width"         : 16,
+        "height"        : 16,
+        "mine_number"   : 40
+    },
+    "hard" : {
+        "width"         : 30,
+        "height"        : 16,
+        "mine_number"   : 99
+    },
+
+    "custom_density" : {
+        "width"         : 30,
+        "height"        : 24,
+        "min_mine_number"   : 20,
+        "max_mine_number"   : 200,
+        "step" : 20
+    },
+    "custom_shape" : {
+        "comment"   : "注释：宽度需保证为面积的约数。",
+        "area"      : 240,
+        "width"     : [16, 20, 24, 30, 40, 60],
+        "mine_number" : 50
+    },
+    "custom_area" : {
+        "comment" : "注释：此处默认地雷密度为0.18",
+        "side_length" : [10, 12, 14, 16, 18, 20],
+        "mine_number" : [18, 26, 35, 46, 58, 72]
+    }
+}
