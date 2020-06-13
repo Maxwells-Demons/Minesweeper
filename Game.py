@@ -15,11 +15,12 @@ import os,sys
 class Game(object):
 
     # 初始化
-    def __init__(self, width = 10, height = 10, mine_number = 10, seed = np.random.randint(2147483647), debug = 0):
+    def __init__(self, width = 10, height = 10, mine_number = 10, seed = np.random.randint(2147483647), debug = 0, delay = -1):
         # 初始化各项属性
         self.width, self.height = width, height
         self.mine_number = mine_number
         self.seed = seed
+        self.delay = delay
         np.random.seed(seed)    # 初始化随机数种子
         random.seed(seed)
         self.missions = Queue()
@@ -173,19 +174,21 @@ class Game(object):
             elif number == -666:
                 return sp+'!' # 代表这里踩雷炸了
             return sp + str(int(number))
-        self.know = self.know.transpose()
-        all=''
-        for i in range(0, self.height):
+        
+        if self.delay < 0:
+            os.system('pause')
+        else:
+            time.sleep(self.delay)
+        os.system('cls')
+
+        for i in range(0, self.width):
             line=''
-            for j in range(0, self.width):
+            for j in range(0, self.height):
                 if i == x and j == y:
-                    line += __num2mine__(self.know[i][j],'X')
+                    line += __num2mine__(self.know[i][j], 'X')
                 else:
-                    line += __num2mine__(self.know[i][j],' ')
+                    line += __num2mine__(self.know[i][j], ' ')
             print(line)
-            all += line + '\n'
-        self.know = self.know.transpose()
-        return all
 
     # 广度优先，层次遍历
     def bfs(self):
@@ -215,8 +218,6 @@ class Game(object):
             
             # 调试模式，输出每一步
             if self.debug == 1:
-                os.system('pause')
-                os.system('cls')
                 self.debug_print(nowx, nowy)
                 print(nowx, nowy)
     
@@ -292,8 +293,6 @@ class Game(object):
                                 break
                         # 调试模式，输出每一步
                         if self.debug == 1:
-                            os.system('pause')
-                            os.system('cls')
                             self.debug_print(now[0], now[1])
                             print(now[0], now[1])
                         continue
@@ -310,8 +309,6 @@ class Game(object):
                                 break
                         # 调试模式，输出每一步
                         if self.debug == 1:
-                            os.system('pause')
-                            os.system('cls')
                             self.debug_print(now[0], now[1])
                             print(now[0], now[1])
                         continue
@@ -361,17 +358,3 @@ class Game(object):
         # 已发现的格子数
         self.discovered = self.width * self.height - sum(sum(self.know == -1))
 
-
-
-# b=Game(15,15,40,seed=1946910147,debug=0)
-# print(b.seed)
-# b.mainloop()
-# print(b)
-# # print(b.number)
-# print(b.tot_time)
-
-# b=Game(width=30,height=16,mine_number=99,seed=1505940870,debug=0)
-# b.mainloop()
-# print(b)
-# print(b.number.transpose())
-# os.system('pause')
