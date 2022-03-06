@@ -12,5 +12,6 @@ config.json中可以自定义简单、中等、复杂难度的地图大小和地
 
 运行截图：
 
+![game0](/images/game0.png)
 
-
+![game1](/images/game1.png)
